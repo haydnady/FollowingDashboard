@@ -11,6 +11,9 @@ from geopy.geocoders import Nominatim
 YOUTUBE_APIKEY = "YOUTUBE_APIKEY"
 YOUTUBE_CHANNEL_ID = "YOUTUBE_CHANNEL_ID"
 
+INSTA_USERNAME = "INSTA_USERNAME"
+INSTA_ACCESS_TOKEN = "INSTA_USERNAME"
+
 #//////////////////////////////////////////////////////////////////
 
 #=========================================================================== Get Youtube Data
@@ -32,3 +35,10 @@ def youtubeData():
 
     return youtubeEssentials
 
+
+def instagramData():
+    baseurl = ("https://api.instagram.com/v1/users/" + INSTA_USERNAME + "/?access_token=" + INSTA_ACCESS_TOKEN)
+
+    instaResults = requests.get(baseurl)
+    instaData = instaResults.json()
+    print(instaData)
