@@ -1,10 +1,10 @@
 """
-    API Call Functions  
+    API Call Functions
 """
 
 import time
 import requests
-from geopy.geocoders import Nominatim
+import re
 
 #//////////////////////////////////////////////////////////////////
 
@@ -12,7 +12,6 @@ YOUTUBE_APIKEY = "YOUTUBE_APIKEY"
 YOUTUBE_CHANNEL_ID = "YOUTUBE_CHANNEL_ID"
 
 INSTA_USERNAME = "INSTA_USERNAME"
-INSTA_ACCESS_TOKEN = "INSTA_USERNAME"
 
 #//////////////////////////////////////////////////////////////////
 
@@ -22,23 +21,29 @@ def youtubeData():
     baseurl = ("https://www.googleapis.com/youtube/v3/channels?part=statistics&" +
                "id=" + YOUTUBE_CHANNEL_ID + "&key=" + YOUTUBE_APIKEY)
 
-    yt_results = requests.get(baseurl)
-    yt_data = yt_results.json()
-    # print(yt_data)
+    ytResults = requests.get(baseurl)
+    ytData = ytResults.json()
+    # print(ytData)
 
     # YoutubeData Dict
-    youtubeEssentials = {}
-    youtubeEssentials = {"ID": yt_data['items'][0]['id'],
-                         "views": int(yt_data['items'][0]['statistics']['viewCount']),
-                         "subscribers": int(yt_data['items'][0]['statistics']['subscriberCount']),
-                         "videos": int(yt_data['items'][0]['statistics']['videoCount'])}
+    youtubeEssentials = {"ID": ytData['items'][0]['id'],
+                         "views": int(ytData['items'][0]['statistics']['viewCount']),
+                         "subscribers": int(ytData['items'][0]['statistics']['subscriberCount']),
+                         "videos": int(ytData['items'][0]['statistics']['videoCount'])}
 
     return youtubeEssentials
 
 
-def instagramData():
-    baseurl = ("https://api.instagram.com/v1/users/" + INSTA_USERNAME + "/?access_token=" + INSTA_ACCESS_TOKEN)
+def instaData():
 
-    instaResults = requests.get(baseurl)
-    instaData = instaResults.json()
-    print(instaData)
+    baseurl = "https://www.instagram.com/" + INSTA_USERNAME
+
+    intaResult = requests.get(baseurl)
+    # Regex search for 3 defferent possibles types of subscriber count values (i.e. 100, 1,234, 54.1m).
+    m = re.search("([0-9],[0-9]+ F)|([0-9]+[.][0-9]+[a-z] [F]|([0-9]+ [F]))",
+                  str(intaResult.content))
+    # print(m.group()[0:-2])
+
+    instaEssentials = {"followers": str(m.group()[0:-2])} # Insta data dict.
+
+    return instaEssentials
