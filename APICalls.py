@@ -44,6 +44,6 @@ def instaData():
                   str(intaResult.content))
     # print(m.group()[0:-2])
 
-    instaEssentials = {"followers": str(m.group()[0:-2])} # Insta data dict.
+    instaEssentials = {"followers": str(m.group()[0:-2]).upper()} # Insta data dict.
 
     return instaEssentials
