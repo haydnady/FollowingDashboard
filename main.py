@@ -1,40 +1,39 @@
 """
-    Dashboard Display of Data  
+    Main  
 """
+
+from PySide2.QtWidgets import QApplication, QMainWindow
+from PySide2 import QtUiTools, QtGui
 from generalFunctions import formatN
-from APICalls import youtubeData, instaData
+from form import Ui_MainWindow
+from APICalls import *
 import sys
 import os
-from PySide2.QtUiTools import QUiLoader
-from PySide2.QtWidgets import QApplication, QMainWindow
-from PySide2 import QtUiTools
 
-# youtube = youtubeData()
-# print("Subcribers", formatN(youtube["subscribers"]))
-
-insta = instaData()
-print("Insta followers", insta["followers"])
-
-
-
-
-# The application class where all the functionality gets added to the Ui
-class AppWindow(QMainWindow):
+class MainWindow(QMainWindow):
 
     def __init__(self):
-        super().__init__()
-        self.ui = QtUiTools.QUiLoader().load("mainwindow.ui")
-        self.show()
-
-        # __________________________________________________________________ Added Ui functionalities 
-        # MainWindow.setWindowIcon( QtGui.QIcon( os.path.abspath("resources\\instaLogo.png") ) )
+        super(MainWindow, self).__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
 
 
-def main():
-    app = QApplication(sys.argv)
-    window = QtUiTools.QUiLoader().load("mainwindow.ui")
-    window .show()
-    sys.exit(app.exec_())
+
+
 
 if __name__ == "__main__":
-    main()
+    # Create the Qt Application
+    app = QApplication(sys.argv)
+    # Create and show the form
+    window = MainWindow()
+    window.show()
+    # Run the main Qt loop
+    sys.exit(app.exec_())
+
+
+# For testing purposes.
+# print("---------------------------------")
+# print("Subcribers: {0:>20}".format(formatN(getYoutubeSubscribers())))
+# print("Twitter followers: {0:>13}".format(getTwitterFollowerCount()))
+# print("Insta followers: {0:>15}".format(getInstaFollowerCount()))
+# print("---------------------------------")

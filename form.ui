@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Followind Dashboard</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(0, 0, 0);</string>
+  </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
@@ -22,23 +25,37 @@
      <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0" columnstretch="5,1">
       <item row="1" column="1">
        <widget class="QLabel" name="labelInsta">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
          <string>Insta</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLCDNumber" name="lcdTwitter"/>
+       <widget class="QLCDNumber" name="lcdTwitter">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="labelTwitter">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
          <string>Twitter</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLCDNumber" name="lcdInsta"/>
+       <widget class="QLCDNumber" name="lcdInsta">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0">
        <widget class="QLCDNumber" name="lcdYoutube">
@@ -47,12 +64,18 @@
           <family>MS Shell Dlg 2</family>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
        <widget class="QLabel" name="labelYoutube">
         <property name="autoFillBackground">
          <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>YouTube</string>
