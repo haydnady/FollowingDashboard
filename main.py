@@ -16,6 +16,10 @@ class myApp(Ui_MainWindow):
         self.setupUi(window)
 
         self.labelYoutube.setPixmap(os.path.abspath("resources\\youtubeLogo.png"))
+        self.labelInsta.setPixmap(os.path.abspath("resources\\instaLogo.png"))
+        self.labelTwitter.setPixmap(os.path.abspath("resources\\twitterLogo.png"))
+
+
 
 
 
