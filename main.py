@@ -15,14 +15,15 @@ class myApp(Ui_MainWindow):
      def __init__(self, window):
         self.setupUi(window)
 
+        # Setting platform icons
         self.labelYoutube.setPixmap(os.path.abspath("resources\\youtubeLogo.png"))
         self.labelInsta.setPixmap(os.path.abspath("resources\\instaLogo.png"))
         self.labelTwitter.setPixmap(os.path.abspath("resources\\twitterLogo.png"))
 
-
-
-
-
+        # Setting LCD data
+        self.lcdYoutube.display(getYoutubeSubscribers())
+        self.lcdInsta.display(getInstaFollowerCount())
+        self.lcdTwitter.display(getTwitterFollowerCount())
 
 
 if __name__ == "__main__":
@@ -36,11 +37,3 @@ if __name__ == "__main__":
     # show the window and start the app
     MainWindow.show()
     app.exec_()
-
-
-# For testing purposes.
-# print("---------------------------------")
-# print("Subcribers: {0:>20}".format(formatN(getYoutubeSubscribers())))
-# print("Twitter followers: {0:>13}".format(getTwitterFollowerCount()))
-# print("Insta followers: {0:>15}".format(getInstaFollowerCount()))
-# print("---------------------------------")
